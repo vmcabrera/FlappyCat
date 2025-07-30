@@ -113,6 +113,7 @@ public partial class Main : Node
         GetNode<Timer>("BonusScoreTimer").WaitTime += BonusScoreTimerDelay;
 
         Player.Init();
+        Player.Hide();
         GameState = GameState.Stopped;
 
         Hud.UpdateScore(_score);
