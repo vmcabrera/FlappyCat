@@ -2,5 +2,8 @@
 .godot/
 .vs/
 /android/
-/Assets/
-!/Assets/*.import
+
+# Godot 4+ ignore assets except imports
+Assets/**
+!Assets/*
+!Assets/**/*.import
