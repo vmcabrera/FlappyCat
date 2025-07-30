@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://cw0uqcgt3e7ns"]
+
+[ext_resource type="Script" uid="uid://wm1coud141jl" path="res://Src/ScratcherScene/Scratcher.cs" id="1_3x6v1"]
+[ext_resource type="Texture2D" uid="uid://r2uuvati053l" path="res://Assets/Sprites/scratcher.png" id="2_dmwkm"]
+[ext_resource type="AudioStream" uid="uid://biuo7pl4h2xut" path="res://Assets/Audio/score.mp3" id="3_bvx66"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmwkm"]
+size = Vector2(60, 334)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bvx66"]
+size = Vector2(60, 334)
+
+[node name="Scratcher" type="Area2D" groups=["scratchers"]]
+script = ExtResource("1_3x6v1")
+metadata/_edit_lock_ = true
+
+[node name="UpperSprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 10)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dmwkm")
+offset = Vector2(0, 165)
+flip_h = true
+flip_v = true
+
+[node name="UpperCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 36)
+shape = SubResource("RectangleShape2D_dmwkm")
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(500, 0)
+
+[node name="LowerSprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 630)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dmwkm")
+flip_h = true
+
+[node name="LowerCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 645)
+shape = SubResource("RectangleShape2D_bvx66")
+
+[node name="ScoreSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_bvx66")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(15, 0)
+scale = Vector2(1.5, 1)
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnVisibleOnScreenNotifier2DScreenExited"]
